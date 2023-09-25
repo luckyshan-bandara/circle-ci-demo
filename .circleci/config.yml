@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/circleci-springboot-demo
+    docker:
+      - image: cimg/openjdk:17.0.7-browsers
+    steps:
+      - checkout
+      - run: |
+          mvn package
+#  test:
+#    working_directory: ~/circleci-springboot-demo
+#    docker:
+#      - image: cimg/openjdk:17.0.7-browsers
+#    steps:
+#      - checkout
+#      - run: python3 main-test.py
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+#      - test:
+#          requires:
+#            - build
